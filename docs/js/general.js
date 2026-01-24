@@ -66,7 +66,7 @@ function boot() {
 }
 
 function boot_parameters() {
-    UserSettings.gridtype = "square";
+    UserSettings.gridtype = "sudoku";
     document.getElementById("nb_size1").value = 10;
     document.getElementById("nb_size2").value = 10;
     UserSettings.displaysize = 38;

@@ -99,7 +99,7 @@ const penpa_modes = {
     },
     'sudoku': {
         //modes
-        'mode': ['surface', 'multicolor', 'line', 'lineE', 'wall', 'number', 'symbol', 'special', 'cage', 'combi', 'sudoku', 'board', 'move'],
+        'mode': ['surface', 'sudoku'],
         //submodes
         'sub': ['line1', 'line2', 'line3', 'line5', 'line4',
             'lineE1', 'lineE2', 'lineE3', 'lineE4', 'lineE5',

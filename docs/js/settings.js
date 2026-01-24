@@ -532,7 +532,9 @@ const UserSettings = {
             this._settingsLoaded = true;
         } else {
             this.gridtype_size.forEach(function(setting) {
-                UserSettings[setting] = getCookie(setting);
+                cookieSetting = getCookie(setting);
+                if (cookieSetting !== null)
+                UserSettings[setting] = cookieSetting;
             });
         }
     }
