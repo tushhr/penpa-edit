@@ -321,14 +321,26 @@ class Panel {
         } else if (pu.mode[pu.mode.qa].edit_mode === "sudoku") {
             switch (this.panelmode) {
                 case "number":
-                    this.nxf = 4;
-                    this.nyf = 3;
-                    this.sizef = 50;
-                    this.canvas_size_setting(canvas_size_setting_constant);
+                    this.nxf = 10;            // 10 columns (1-9 + Cross)
+                    this.nyf = 1;             // 1 row
+                    this.sizef = 35;          // Button size thoda chota kiya taaki screen pe fit ho
+                    this.spacef = 4;          // Buttons ke beech ka gap
+
+                    // Sabse important: Canvas aur panel ki width ko force karna
+                    let totalWidth = (this.sizef + this.spacef) * this.nxf + this.spacef;
+                    this.canvas_size_setting(0);
+
+                    // CSS ko manually override karo taaki line na toote
+                    this.fkh.style.width = totalWidth + "px";
+                    this.fkb.style.width = totalWidth + "px";
+                    this.canvasf.style.width = (totalWidth - this.spacef) + "px";
+                    this.canvasf.style.height = (this.sizef) + "px"; // Height fix kar di
+
                     this.fkb.style.paddingTop = "0px";
                     this.fkb.style.display = "block";
-                    this.fkm.style.display = "flex";
-                    this.cont = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "\u{232B}", "\u{2421}"];
+                    this.fkm.style.display = "none";
+
+                    this.cont = [1, 2, 3, 4, 5, 6, 7, 8, 9, "✖"];
                     this.draw_number();
                     break;
                 case "alphabet":

@@ -797,26 +797,26 @@ body textarea {
 }
 
 #float-key {
-    position: absolute;
+    /* position: absolute;
     display: none;
     z-index: 1;
     left: 300px;
     top: 250px;
     width: 0px;
     height: 0px;
-    border-radius: 20px;
+    border-radius: 20px; */
 }
 
-#float-key-header {
+/* #float-key-header {
     width: 200px;
     height: 40px;
     text-align: center;
     padding-top: 0px;
     border-radius: 5px 5px 0 0;
     cursor: move;
-}
+} */
 
-#float-key-body {
+/* #float-key-body {
     position: relative;
     width: 200px;
     height: 140px;
@@ -825,7 +825,7 @@ body textarea {
     padding-top: 0px;
     border-radius: 5px;
     box-shadow: var(--shadow_mid);
-}
+} */
 
 #float-key-menu {
     width: 100%;
@@ -895,15 +895,15 @@ body textarea {
     opacity: .5;
 }
 
-#float-canvas {
+/* #float-canvas {
     margin-top: 5px;
     background: none;
-}
+} */
 
 .drag-and-drop {
-    cursor: move;
-    position: absolute;
-    z-index: 100;
+    /* cursor: move; */
+    /* position: absolute; */
+    /* z-index: 100; */
 }
 
 .drag {
