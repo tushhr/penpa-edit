@@ -1638,7 +1638,7 @@ sup {
         text-align: center;
     }
 
-    .labelSu {
+    /* .labelSu {
         display: inline-block;
         height: 50px;
         padding-left: 5px;
@@ -1650,7 +1650,8 @@ sup {
         text-align: center;
         line-height: 50px !important;
         border-radius: 3px;
-    }
+        
+        height: 38px;       /* Height kam kar di */
 }
 
 /* Replay */

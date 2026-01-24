@@ -99,7 +99,7 @@ const penpa_modes = {
     },
     'sudoku': {
         //modes
-        'mode': ['surface', 'sudoku'],
+        'mode': ['sudoku', 'surface'],
         //submodes
         'sub': ['line1', 'line2', 'line3', 'line5', 'line4',
             'lineE1', 'lineE2', 'lineE3', 'lineE4', 'lineE5',

@@ -89,6 +89,9 @@ function create() {
     panel_pu.draw_panel();
     pu.mode_set("surface"); //include redraw
 
+    if(gridtype === "sudoku")
+    pu.mode_set("sudoku"); //include redraw
+
     UserSettings.loadFromCookies("others");
 
     // Populate Constraints list

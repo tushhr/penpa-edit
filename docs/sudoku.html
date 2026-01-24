@@ -146,9 +146,57 @@
                 id="page_help">Help</button></span>
     </header>
     <div id="app-container">
+
+        <div id="puzzle-container">
+
+            <div id="stop_watch">
+                <h1 id="timer" class="values">00:00:00:00:0</h1>
+                <div>
+                    <button id="sw_start" class="button sw">Start</button>
+                    <button id="sw_pause" class="button sw">Pause</button>
+                    <button id="sw_stop" class="button sw">Stop</button>
+                    <button id="sw_reset" class="button sw">Reset</button>
+                    <button id="sw_hide" class="button sw" data-mode="hide">Hide</button>
+                </div>
+            </div>
+            <div id="puzzleinfo">
+                <label id="puzzletitle" class="info"></label>
+                <label id="puzzleauthor" class="info"></label>
+                <div><input type="button" id="puzzlerules" value="Show Rules" /></div>
+                <div><a id="puzzlesourcelink" href="" target="_blank"><label id="puzzlesource" class="info"></label></a>
+                </div>
+                <div><label id="solution_check" class="info" /></label></div>
+            </div>
+            <div id="dvique" class="dvique">
+                <canvas id="pause_canvas" style="display:none;"></canvas>
+            </div>
+            <div id="contestinfo">
+                <div><label id="answer_key" class="info" /></label>
+                </div>
+            </div>
+            <div id="bottom_button">
+                <span class="tooltip">
+                    <button id="tb_undo" class="button" disabled>Undo</button>
+                    <span id="undo_text" class="tooltiptext">CTRL + z</span>
+                </span>
+                <span class="tooltip">
+                    <button id="tb_redo" class="button" disabled>Redo</button>
+                    <span id="redo_text" class="tooltiptext">CTRL + y</span>
+                </span>
+
+                <span class="tooltip">
+                    <button id="tb_delete" class="button">Delete all</button>
+                    <span id="erase_text" class="tooltiptext">Erase problem or solution grid</span>
+                </span>
+
+                <button id="input_url">Load</button>
+                <br>
+            </div>
+
+        </div>
         <div id="tool-container">
             <div id="tool-holder">
-                <div id="top_button">
+                <div id="top_button" style="display: none;">
                     <button id="newboard">New Grid / Update</button>
                     <button id="rotation">Transform</button>
                     <button id="newsize" style="display:none;">Resize</button>
@@ -180,6 +228,10 @@
                     </div>
                     <div id="mode_button" class="mode_button">
                         <label class="label_mode" id="mode_txt">Mode:</label>
+
+                        <input type="radio" name="mode" id="mo_sudoku" />
+                        <label for="mo_sudoku" class="label" id="mo_sudoku_lb">Sudoku</label>
+                        <!-- <input type="radio" name="mode" id="mo_symbol" /> -->
                         <input type="radio" name="mode" id="mo_surface" />
                         <label for="mo_surface" class="label" id="mo_surface_lb">Surface</label>
                         <input type="radio" name="mode" id="mo_multicolor" />
@@ -196,22 +248,19 @@
                         <label for="mo_board" class="label" id="mo_board_lb">Box</label>
                         <input type="radio" name="mode" id="mo_move" />
                         <label for="mo_move" class="label" id="mo_move_lb">Move</label>
-                        <br id="mode_break">
+                        <!-- <br id="mode_break">
                         <label class="label_mode"
-                            id="mode_txt_space">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            id="mode_txt_space">&nbsp;</label> -->
                         <input type="radio" name="mode" id="mo_number" />
                         <label for="mo_number" class="label" id="mo_number_lb">Number</label>
-                        <input type="radio" name="mode" id="mo_sudoku" />
-                        <label for="mo_sudoku" class="label" id="mo_sudoku_lb">Sudoku</label>
-                        <input type="radio" name="mode" id="mo_symbol" />
                         <label for="mo_symbol" class="label" id="mo_symbol_lb">Shape</label>
                         <input type="radio" name="mode" id="mo_special" />
                         <label for="mo_special" class="label" id="mo_special_lb">Special</label>
                         <input type="radio" name="mode" id="mo_combi" />
                         <label for="mo_combi" class="label" id="mo_combi_lb">Composite</label>
-                        <span class="tab" id="tab_selection">
+                        <!-- <span class="tab" id="tab_selection">
                             <select id="mode_choices" multiple size="1"></select>
-                        </span>
+                        </span> -->
                         <!-- <button id="toggle_panel_visibility" onclick="panel_toggle();">👁️</button> -->
                     </div>
                     <hr size="1" noshade>
@@ -747,95 +796,48 @@
                 </div>
             </div>
             <div id="ruletext"></div>
+
         </div>
-        <div id="puzzle-container">
-            <div id="puzzleinfo">
-                <label id="puzzletitle" class="info"></label>
-                <label id="puzzleauthor" class="info"></label>
-                <div><input type="button" id="puzzlerules" value="Show Rules" /></div>
-                <div><a id="puzzlesourcelink" href="" target="_blank"><label id="puzzlesource" class="info"></label></a>
+        <div id="float-key">
+            <div class="drag-and-drop" id="float-key-header" style="display: none;">
+                <h4 id="float-key-header-lb">panel</h4>
+                <button id="close-float-panel" onclick="panel_off();">&times;</button>
+            </div>
+            <div id="float-key-body">
+                <div id="float-key-menu">
+                    <ul class="panel_menu">
+                        <li id="panel_1_lbmenu"> 1</li>
+                        <li id="panel_A_lbmenu">A</li>
+                        <li id="panel_a_lbmenu">a</li>
+                        <li id="panel_Text_lbmenu">Text</li>
+                        <li id="panel_select_lbmenu">▶</li>
+                    </ul>
                 </div>
-                <div><label id="solution_check" class="info" /></label></div>
-            </div>
-            <div id="dvique" class="dvique">
-                <canvas id="pause_canvas" style="display:none;"></canvas>
-            </div>
-            <div id="contestinfo">
-                <div><label id="answer_key" class="info" /></label>
+                <div id="float-key-select" style="display:none;">
+                    <ul class="panel_menu_select">
+                        <li id="panel_ja_K_lbmenu">ア</li>
+                        <li id="panel_ja_H_lbmenu">あ</li>
+                        <li id="panel_!_lbmenu">!</li>
+                        <li id="panel_Kan_lbmenu">Kanji</li>
+                        <li id="panel_Rome_lbmenu">XVI</li>
+                        <li id="panel_Greek_lbmenu">α</li>
+                        <li id="panel_europe_lbmenu">À</li>
+                        <li id="panel_Cyrillic_lbmenu">Ж</li>
+                        <li id="panel_Chess_lbmenu">♛</li>
+                        <li id="panel_card_lbmenu">♠</li>
+                    </ul>
                 </div>
-            </div>
-            <div id="bottom_button">
-                <span class="tooltip">
-                    <button id="tb_undo" class="button" disabled>Undo</button>
-                    <span id="undo_text" class="tooltiptext">CTRL + z</span>
-                </span>
-                <span class="tooltip">
-                    <button id="tb_redo" class="button" disabled>Redo</button>
-                    <span id="redo_text" class="tooltiptext">CTRL + y</span>
-                </span>
-                <span class="tooltip">
-                    <button id="tb_reset" class="button">Erase selected mode</button>
-                    <span id="eraseselect_text" class="tooltiptext">Erase elements that belongs to the selected
-                        mode</span>
-                </span>
-                <span class="tooltip">
-                    <button id="tb_delete" class="button">Delete all</button>
-                    <span id="erase_text" class="tooltiptext">Erase problem or solution grid</span>
-                </span>
-                <br>
-            </div>
-            <div id="stop_watch">
-                <h1 id="timer" class="values">00:00:00:00:0</h1>
-                <div>
-                    <button id="sw_start" class="button sw">Start</button>
-                    <button id="sw_pause" class="button sw">Pause</button>
-                    <button id="sw_stop" class="button sw">Stop</button>
-                    <button id="sw_reset" class="button sw">Reset</button>
-                    <button id="sw_hide" class="button sw" data-mode="hide">Hide</button>
+                <div id="float-key-board">
+                    <canvas id="float-canvas" class="float-canvas"></canvas>
+                </div>
+                <div id="float-key-text">
+                    <textarea class="text_area" class="text_area" rows="1" cols="20" maxlength="100"
+                        id="inputtext"></textarea>
+                    <input type="button" id="closeBtn_input1" value="Insert" />
+                    <input type="button" id="closeBtn_input2" value="Clear" />
+                    <input type="button" id="closeBtn_input3" value="Load" />
                 </div>
             </div>
-            <div id="float-key">
-                <div class="drag-and-drop" id="float-key-header" style="display: none;">
-                    <h4 id="float-key-header-lb">panel</h4>
-                    <button id="close-float-panel" onclick="panel_off();">&times;</button>
-                </div>
-                <div id="float-key-body">
-                    <div id="float-key-menu">
-                        <ul class="panel_menu">
-                            <li id="panel_1_lbmenu"> 1</li>
-                            <li id="panel_A_lbmenu">A</li>
-                            <li id="panel_a_lbmenu">a</li>
-                            <li id="panel_Text_lbmenu">Text</li>
-                            <li id="panel_select_lbmenu">▶</li>
-                        </ul>
-                    </div>
-                    <div id="float-key-select" style="display:none;">
-                        <ul class="panel_menu_select">
-                            <li id="panel_ja_K_lbmenu">ア</li>
-                            <li id="panel_ja_H_lbmenu">あ</li>
-                            <li id="panel_!_lbmenu">!</li>
-                            <li id="panel_Kan_lbmenu">Kanji</li>
-                            <li id="panel_Rome_lbmenu">XVI</li>
-                            <li id="panel_Greek_lbmenu">α</li>
-                            <li id="panel_europe_lbmenu">À</li>
-                            <li id="panel_Cyrillic_lbmenu">Ж</li>
-                            <li id="panel_Chess_lbmenu">♛</li>
-                            <li id="panel_card_lbmenu">♠</li>
-                        </ul>
-                    </div>
-                    <div id="float-key-board">
-                        <canvas id="float-canvas" class="float-canvas"></canvas>
-                    </div>
-                    <div id="float-key-text">
-                        <textarea class="text_area" class="text_area" rows="1" cols="20" maxlength="100"
-                            id="inputtext"></textarea>
-                        <input type="button" id="closeBtn_input1" value="Insert" />
-                        <input type="button" id="closeBtn_input2" value="Clear" />
-                        <input type="button" id="closeBtn_input3" value="Load" />
-                    </div>
-                </div>
-            </div>
-        </br>
         </div>
     </div>
     <div id="modal" class="modal">

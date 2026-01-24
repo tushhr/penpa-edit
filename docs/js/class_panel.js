@@ -48,16 +48,30 @@ class Panel {
     }
 
     draw_number() {
-        set_surface_style(this.ctxf, 99);
-        for (var i = 0; i < this.nxf * this.nyf; i++) {
-            this.ctxf.fillRect((i % this.nxf) * (this.sizef + this.spacef), (i / this.nxf | 0) * (this.sizef + this.spacef), this.sizef, this.sizef);
-        }
-        for (var i = 0; i < this.nxf * this.nyf; i++) {
-            set_font_style(this.ctxf, 0.8 * this.sizef.toString(10), pu.mode[pu.mode.qa][pu.mode[pu.mode.qa].edit_mode][1]);
-            if (this.ctxf.fillStyle === Color.WHITE) { this.ctxf.fillStyle = Color.BLACK; }
-            this.ctxf.text(this.cont[i].toString(), (i % this.nxf + this.offset) * (this.sizef + this.spacef), ((i / this.nxf | 0) + 0.55) * (this.sizef + this.spacef));
-        }
+    this.ctxf.clearRect(0, 0, this.canvasf.width, this.canvasf.height);
+    
+    for (var i = 0; i < this.nxf; i++) {
+        // Circle ka center point calculate karo
+        let x = i * (this.sizef + this.spacef) + (this.sizef / 2);
+        let y = this.sizef / 2;
+        let r = this.sizef / 2;
+
+        // --- Circle Paint Karo ---
+        this.ctxf.beginPath();
+        this.ctxf.arc(x, y, r, 0, 2 * Math.PI);
+        this.ctxf.fillStyle = (i === 9) ? "#fff0f0" : "#ffffff"; // Cross thoda reddish
+        this.ctxf.fill();
+        this.ctxf.strokeStyle = "#cccccc"; // Halka minimal border
+        this.ctxf.stroke();
+
+        // --- Text Paint Karo ---
+        this.ctxf.fillStyle = (i === 9) ? "#ff0000" : "#333333"; 
+        this.ctxf.textAlign = "center";
+        this.ctxf.textBaseline = "middle";
+        this.ctxf.font = (0.5 * this.sizef) + "px Arial";
+        this.ctxf.fillText(this.cont[i].toString(), x, y);
     }
+}
 
     draw_unicodesymbol() {
         set_surface_style(this.ctxf, 99);
@@ -340,7 +354,7 @@ class Panel {
                     this.fkb.style.display = "block";
                     this.fkm.style.display = "none";
 
-                    this.cont = [1, 2, 3, 4, 5, 6, 7, 8, 9, "✖"];
+                    this.cont = [1, 2, 3, 4, 5, 6, 7, 8, 9, "\u{2421}", "\u{2421}"];
                     this.draw_number();
                     break;
                 case "alphabet":
