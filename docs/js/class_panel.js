@@ -46,33 +46,50 @@ class Panel {
         this.fkb.style.width = ((this.sizef + this.spacef) * this.nxf + this.spacef).toString() + "px";
         this.fkb.style.height = ((this.sizef + this.spacef) * this.nyf + this.spacef + height).toString() + "px";
     }
-
     draw_number() {
-    this.ctxf.clearRect(0, 0, this.canvasf.width, this.canvasf.height);
-    
-    for (var i = 0; i < this.nxf; i++) {
-        // Circle ka center point calculate karo
-        let x = i * (this.sizef + this.spacef) + (this.sizef / 2);
-        let y = this.sizef / 2;
-        let r = this.sizef / 2;
+        this.ctxf.clearRect(0, 0, this.canvasf.width, this.canvasf.height);
 
-        // --- Circle Paint Karo ---
-        this.ctxf.beginPath();
-        this.ctxf.arc(x, y, r, 0, 2 * Math.PI);
-        this.ctxf.fillStyle = (i === 9) ? "#fff0f0" : "#ffffff"; // Cross thoda reddish
-        this.ctxf.fill();
-        this.ctxf.strokeStyle = "#cccccc"; // Halka minimal border
-        this.ctxf.stroke();
+        for (var i = 0; i < this.nxf * this.nyf; i++) {
+            if (this.cont[i] === "") continue;
 
-        // --- Text Paint Karo ---
-        this.ctxf.fillStyle = (i === 9) ? "#ff0000" : "#333333"; 
-        this.ctxf.textAlign = "center";
-        this.ctxf.textBaseline = "middle";
-        this.ctxf.font = (0.5 * this.sizef) + "px Arial";
-        this.ctxf.fillText(this.cont[i].toString(), x, y);
+            let col = i % this.nxf;
+            let row = Math.floor(i / this.nxf);
+            let x = col * (this.sizef + this.spacef) + this.sizef / 2;
+            let y = row * (this.sizef + this.spacef) + this.sizef / 2;
+            let r = this.sizef / 2;
+
+            // --- Outer Soft Shadow (Aesthetic Touch) ---
+            this.ctxf.shadowColor = "rgba(0, 0, 0, 0.05)";
+            this.ctxf.shadowBlur = 4;
+            this.ctxf.shadowOffsetY = 2;
+
+            // --- Circular Button Body ---
+            this.ctxf.beginPath();
+            this.ctxf.arc(x, y, r, 0, 2 * Math.PI);
+            this.ctxf.fillStyle = "#ffffff";
+            this.ctxf.fill();
+
+            // --- Reset Shadow for Text ---
+            this.ctxf.shadowColor = "transparent";
+
+            // --- Border ---
+            this.ctxf.strokeStyle = "#efefef";
+            this.ctxf.lineWidth = 1.5;
+            this.ctxf.stroke();
+
+            // --- Typography ---
+            let isSpecial = (this.cont[i] === "⌫");
+            this.ctxf.fillStyle = isSpecial ? "#ff5e5e" : "#333333";
+
+            // Custom Font Style
+            let fontSize = isSpecial ? 0.4 * this.sizef : 0.45 * this.sizef;
+            this.ctxf.font = `600 ${fontSize}px 'Inter', -apple-system, sans-serif`;
+            this.ctxf.textAlign = "center";
+            this.ctxf.textBaseline = "middle";
+
+            this.ctxf.fillText(this.cont[i].toString(), x, y);
+        }
     }
-}
-
     draw_unicodesymbol() {
         set_surface_style(this.ctxf, 99);
         for (var i = 0; i < this.nxf * this.nyf; i++) {
@@ -335,26 +352,18 @@ class Panel {
         } else if (pu.mode[pu.mode.qa].edit_mode === "sudoku") {
             switch (this.panelmode) {
                 case "number":
-                    this.nxf = 10;            // 10 columns (1-9 + Cross)
-                    this.nyf = 1;             // 1 row
-                    this.sizef = 35;          // Button size thoda chota kiya taaki screen pe fit ho
-                    this.spacef = 4;          // Buttons ke beech ka gap
+                    this.nxf = 3;
+                    this.nyf = 4;
+                    this.sizef = 55;
+                    this.spacef = 12;
 
-                    // Sabse important: Canvas aur panel ki width ko force karna
-                    let totalWidth = (this.sizef + this.spacef) * this.nxf + this.spacef;
                     this.canvas_size_setting(0);
-
-                    // CSS ko manually override karo taaki line na toote
-                    this.fkh.style.width = totalWidth + "px";
-                    this.fkb.style.width = totalWidth + "px";
-                    this.canvasf.style.width = (totalWidth - this.spacef) + "px";
-                    this.canvasf.style.height = (this.sizef) + "px"; // Height fix kar di
-
-                    this.fkb.style.paddingTop = "0px";
-                    this.fkb.style.display = "block";
+                    this.fkb.style.display = "flex";
+                    this.fkb.style.justifyContent = "center";
                     this.fkm.style.display = "none";
 
-                    this.cont = [1, 2, 3, 4, 5, 6, 7, 8, 9, "\u{2421}", "\u{2421}"];
+                    // Clean Content: 1-9, 0, aur Delete
+                    this.cont = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "⌫", ""];
                     this.draw_number();
                     break;
                 case "alphabet":

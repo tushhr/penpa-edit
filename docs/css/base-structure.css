@@ -229,13 +229,13 @@ hr.newgridhrline {
 
 #buttons {
     background-color: var(--bgMedium);
-    box-shadow: var(--shadow_low);
+    /* box-shadow: var(--shadow_low); */
     border: 0;
     font-size: 0;
     /* width: 600px; */
     /*    box-sizing: border-box;*/
     /*    width: min(630px, 100%);*/
-    margin: 5px auto;
+    /* margin: 5px auto; */
     padding: 10px;
 }
 
@@ -816,16 +816,16 @@ body textarea {
     cursor: move;
 } */
 
-/* #float-key-body {
-    position: relative;
+#float-key-body {
+    /* position: relative;
     width: 200px;
     height: 140px;
-    margin-top: 0px;
+    margin-top: 0px; */
     text-align: center;
-    padding-top: 0px;
-    border-radius: 5px;
-    box-shadow: var(--shadow_mid);
-} */
+    padding-top: 20px;
+    /* border-radius: 5px; */
+    /* box-shadow: var(--shadow_mid); */
+}
 
 #float-key-menu {
     width: 100%;

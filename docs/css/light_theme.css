@@ -170,7 +170,7 @@
 }
 
 #float-key {
-    background-color: var(--white);
+    /* background-color: var(--white); */
 }
 
 .modal-content,
@@ -184,13 +184,16 @@
 }
 
 header,
-#float-key-header,
-#float-key-body,
-#float-key-menu,
-#float-key-select,
 .modal-header,
 .modal-subheader {
     background: var(--greyLight);
+}
+
+#float-key-header,
+#float-key-body,
+#float-key-menu,
+#float-key-select {
+    background: var(--bgMedium);
 }
 
 #modal-save-content textarea,
