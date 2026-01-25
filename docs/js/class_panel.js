@@ -354,8 +354,8 @@ class Panel {
                 case "number":
                     this.nxf = 3;
                     this.nyf = 4;
-                    this.sizef = 55;
-                    this.spacef = 12;
+                    this.sizef = 40;
+                    this.spacef = 15;
 
                     this.canvas_size_setting(0);
                     this.fkb.style.display = "flex";
