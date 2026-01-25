@@ -2088,8 +2088,9 @@ onload = function() {
             var yf = event.pageY - (float_canvas.getBoundingClientRect().y - document.documentElement.getBoundingClientRect().top);
         }
         var sizef = panel_pu.sizef;
-        var numxf = Math.floor(xf / (sizef + 3));
-        var numyf = Math.floor(yf / (sizef + 3));
+        var spacef = panel_pu.spacef;
+        var numxf = Math.floor(xf / (sizef + spacef));
+        var numyf = Math.floor(yf / (sizef + spacef));
         var n = numxf + numyf * panel_pu.nxf;
         panel_select = n;
         var paneletc = ["ja_K", "ja_H", "Kan", "Rome", "Greek", "Cyrillic", "europe", "Chess", "card"];
