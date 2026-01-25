@@ -363,7 +363,7 @@ class Panel {
                     this.fkm.style.display = "none";
 
                     // Clean Content: 1-9, 0, aur Delete
-                    this.cont = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "⌫", ""];
+                    this.cont = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "", "⌫"];
                     this.draw_number();
                     break;
                 case "alphabet":
