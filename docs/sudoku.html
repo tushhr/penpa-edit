@@ -183,14 +183,18 @@
                     <button id="tb_redo" class="button" disabled>Redo</button>
                     <span id="redo_text" class="tooltiptext">CTRL + y</span>
                 </span>
-
+                <span class="tooltip is_hidden">
+                    <button id="tb_reset" class="button">Erase selected mode</button>
+                    <span id="eraseselect_text" class="tooltiptext">Erase elements that belongs to the selected
+                        mode</span>
+                </span>
                 <span class="tooltip">
                     <button id="tb_delete" class="button">Delete all</button>
                     <span id="erase_text" class="tooltiptext">Erase problem or solution grid</span>
                 </span>
 
                 <button id="input_url">Load</button>
-                        <button id="duplicate" onclick="duplicate();">Clone</button>
+                <button id="duplicate" onclick="duplicate();">Clone</button>
 
                 <br>
             </div>
@@ -252,9 +256,8 @@
                             <label for="mo_board" class="label" id="mo_board_lb">Box</label>
                             <input type="radio" name="mode" id="mo_move" />
                             <label for="mo_move" class="label" id="mo_move_lb">Move</label>
-                            <!-- <br id="mode_break">
-                        <label class="label_mode"
-                            id="mode_txt_space">&nbsp;</label> -->
+                            <br id="mode_break">
+                            <label class="label_mode" id="mode_txt_space">&nbsp;</label>
                             <input type="radio" name="mode" id="mo_number" />
                             <label for="mo_number" class="label" id="mo_number_lb">Number</label>
                             <label for="mo_symbol" class="label" id="mo_symbol_lb">Shape</label>
@@ -262,10 +265,11 @@
                             <label for="mo_special" class="label" id="mo_special_lb">Special</label>
                             <input type="radio" name="mode" id="mo_combi" />
                             <label for="mo_combi" class="label" id="mo_combi_lb">Composite</label>
-                            <!-- <span class="tab" id="tab_selection">
-                            <select id="mode_choices" multiple size="1"></select>
-                        </span> -->
-                            <!-- <button id="toggle_panel_visibility" onclick="panel_toggle();">👁️</button> -->
+                            <span class="tab is_hidden" id="tab_selection">
+                                <select id="mode_choices" multiple size="1"></select>
+                            </span>
+                            <button id="toggle_panel_visibility" onclick="panel_toggle();"
+                                class="is_hidden">👁️</button>
                         </div>
                         <hr size="1" noshade>
                         <div id="submode_button">
