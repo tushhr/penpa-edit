@@ -51,6 +51,7 @@ class Panel {
 
         for (var i = 0; i < this.nxf * this.nyf; i++) {
             if (this.cont[i] === "") continue;
+            
 
             let col = i % this.nxf;
             let row = Math.floor(i / this.nxf);
@@ -80,6 +81,13 @@ class Panel {
             // --- Typography ---
             let isSpecial = (this.cont[i] === "⌫");
             this.ctxf.fillStyle = isSpecial ? "#ff5e5e" : "#333333";
+
+            if( i == 10 && pu.mode[pu.mode.qa][pu.mode[pu.mode.qa].edit_mode][0] == 2) {
+                this.ctxf.fillStyle = "#666666";
+                this.ctxf.strokeStyle = "#666666";
+                this.ctxf.lineWidth = 2;
+                this.ctxf.stroke();
+            }
 
             // Custom Font Style
             let fontSize = isSpecial ? 0.4 * this.sizef : 0.45 * this.sizef;
@@ -363,7 +371,7 @@ class Panel {
                     this.fkm.style.display = "none";
 
                     // Clean Content: 1-9, 0, aur Delete
-                    this.cont = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "", "⌫"];
+                    this.cont = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "✎", "⌫"];
                     this.draw_number();
                     break;
                 case "alphabet":

@@ -2111,7 +2111,7 @@ onload = function() {
             if (0 <= n && n <= 9) {
                 pu.key_number(panel_pu.cont[n].toString());
             } else if (n === 10) {
-                pu.key_backspace();
+                pu.toggle_check("sub_sudoku2", "sub_sudoku1");
             } else if (n === 11) {
                 pu.key_space();
             }

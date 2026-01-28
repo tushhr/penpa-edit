@@ -1392,6 +1392,18 @@ class Puzzle {
         this.set_custom_color(name);
     }
 
+    
+    toggle_check(idToDisable, idToEnable) {
+        console.log("Toggling " + idToDisable + " and " + idToEnable);
+        if (document.getElementById(idToDisable)) {
+            if(document.getElementById(idToDisable).checked) {
+                this.submode_check(idToEnable);
+            } else {
+                this.submode_check(idToDisable);
+            }
+        }
+    }
+
     // override
     cursolcheck() {
         return;
