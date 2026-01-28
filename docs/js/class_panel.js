@@ -113,7 +113,7 @@ class Panel {
             this.ctxf.fillText(this.cont[i].toString(), textX, textY);
 
             // --- 5. Highlight Mode 1 special condition (Aapka purana logic) ---
-            if (i == 10 && editMode == 2) { // Maan lo editMode 1 pe highlight chahiye
+            if (i == 11 && editMode == 2 || i == 10 && editMode == 3) { // Maan lo editMode 1 pe highlight chahiye
                 this.ctxf.strokeStyle = "#3498db"; // Clean Blue
                 this.ctxf.lineWidth = 2.5;
                 this.ctxf.stroke();
@@ -383,7 +383,7 @@ class Panel {
         } else if (pu.mode[pu.mode.qa].edit_mode === "sudoku") {
             switch (this.panelmode) {
                 case "number":
-                    this.nxf = 3;
+                    this.nxf = 4;
                     this.nyf = 4;
                     this.sizef = 40;
                     this.spacef = 15;
@@ -394,7 +394,7 @@ class Panel {
                     this.fkm.style.display = "none";
 
                     // Clean Content: 1-9, 0, aur Delete
-                    this.cont = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "✎", "⌫"];
+                    this.cont = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "⊡", "✎", "⌫", "", "", ""];
                     this.draw_number();
                     break;
                 case "alphabet":

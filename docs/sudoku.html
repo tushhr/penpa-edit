@@ -272,7 +272,7 @@
                                 class="is_hidden">👁️</button>
                         </div>
                         <hr size="1" noshade>
-                        <div id="submode_button">
+                        <div id="submode_button" style="display: none;">
                             <span id="div_sub">
                                 <label class="label_mode tooltip" id="sub_txt">Sub:&nbsp;&nbsp;<span id="sub_text"
                                         class="tooltiptext">Choose one sub-mode wherever applicable</span></label>
@@ -623,7 +623,8 @@
                                     </li>
                                 </ul>
                             </span>
-                            <span id="mode_sudoku" style="display:none;">
+                            <div id="mode_sudoku"></div>
+                            <span id="mode_" style="display:none;">
                                 <input type="radio" name="mode_sudoku" value="1" id="sub_sudoku1" checked="checked">
                                 <label for="sub_sudoku1" class="labelSu" id="sub_sudoku1_lb">Normal</label>
                                 <input type="radio" name="mode_sudoku" value="2" id="sub_sudoku2">

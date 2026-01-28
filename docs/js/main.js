@@ -2111,8 +2111,10 @@ onload = function() {
             if (0 <= n && n <= 9) {
                 pu.key_number(panel_pu.cont[n].toString());
             } else if (n === 10) {
-                pu.toggle_check("sub_sudoku2", "sub_sudoku1");
+                pu.toggle_check("sub_sudoku3", "sub_sudoku1");
             } else if (n === 11) {
+                pu.toggle_check("sub_sudoku2", "sub_sudoku1");
+            } else if (n === 12) {
                 pu.key_space();
             }
         } else if (panel_pu.panelmode === "alphabet" || panel_pu.panelmode === "alphabet_s") {
