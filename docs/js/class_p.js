@@ -453,13 +453,13 @@ class Puzzle {
                 this.cellsoutsideFrame.push(cell_lastrow);
 
                 // Left and Right Edges of first row cell
-                let lr_firstrow = this.point[cell_firstrow].neighbor.sort(function(a, b) {
+                let lr_firstrow = this.point[cell_firstrow].neighbor.sort(function (a, b) {
                     return b - a; // Descending
                 }).slice(0, 2);
                 this.cellsoutsideFrame.push(lr_firstrow[0], lr_firstrow[1]);
 
                 // Left and Right Edges of last row cell
-                let lr_lastrow = this.point[cell_lastrow].neighbor.sort(function(a, b) {
+                let lr_lastrow = this.point[cell_lastrow].neighbor.sort(function (a, b) {
                     return b - a; // Descending
                 }).slice(0, 2);
                 this.cellsoutsideFrame.push(lr_lastrow[0], lr_lastrow[1]);
@@ -472,13 +472,13 @@ class Puzzle {
                 this.cellsoutsideFrame.push(cell_lastcol);
 
                 // Top and bottom Edges of first column cell
-                let lr_firstcol = this.point[cell_firstcol].neighbor.sort(function(a, b) {
+                let lr_firstcol = this.point[cell_firstcol].neighbor.sort(function (a, b) {
                     return a - b; // Ascending
                 }).slice(0, 2);
                 this.cellsoutsideFrame.push(lr_firstcol[0], lr_firstcol[1]);
 
                 // Top and bottom Edges of last column cell
-                let lr_lastcol = this.point[cell_lastcol].neighbor.sort(function(a, b) {
+                let lr_lastcol = this.point[cell_lastcol].neighbor.sort(function (a, b) {
                     return a - b; // Ascending
                 }).slice(0, 2);
                 this.cellsoutsideFrame.push(lr_lastcol[0], lr_lastcol[1]);
@@ -486,7 +486,7 @@ class Puzzle {
         }
 
         // Remove duplicates
-        this.cellsoutsideFrame = [...new Set(this.cellsoutsideFrame.sort(function(a, b) {
+        this.cellsoutsideFrame = [...new Set(this.cellsoutsideFrame.sort(function (a, b) {
             return a - b; // Ascending
         }))]
     }
@@ -1110,12 +1110,12 @@ class Puzzle {
             var canvastext = resizedCanvas.toDataURL("image/jpeg");
         } else if (document.getElementById("nb_type3").checked) {
             var svg_canvas = new C2S(this.canvasx, this.canvasy);
-            svg_canvas.text = function(text, x, y, width = 1e4) {
+            svg_canvas.text = function (text, x, y, width = 1e4) {
                 var fontsize = parseFloat(this.font.split("px")[0]);
                 this.strokeText(text, x, y + 0.28 * fontsize, width);
                 this.fillText(text, x, y + 0.28 * fontsize, width);
             };
-            svg_canvas.arrow = function(startX, startY, endX, endY, controlPoints) {
+            svg_canvas.arrow = function (startX, startY, endX, endY, controlPoints) {
                 var dx = endX - startX;
                 var dy = endY - startY;
                 var len = Math.sqrt(dx * dx + dy * dy);
@@ -1392,11 +1392,11 @@ class Puzzle {
         this.set_custom_color(name);
     }
 
-    
+
     toggle_check(idToDisable, idToEnable) {
         console.log("Toggling " + idToDisable + " and " + idToEnable);
         if (document.getElementById(idToDisable)) {
-            if(document.getElementById(idToDisable).checked) {
+            if (document.getElementById(idToDisable).checked) {
                 this.submode_check(idToEnable);
             } else {
                 this.submode_check(idToDisable);
@@ -2666,7 +2666,7 @@ class Puzzle {
                     case "battleship":
                         for (var i in this[pu].symbol) {
                             if ((this[pu].symbol[i][1] === "battleship_B" &&
-                                    this[pu].symbol[i][0] >= 1 && this[pu].symbol[i][0] <= 6) ||
+                                this[pu].symbol[i][0] >= 1 && this[pu].symbol[i][0] <= 6) ||
                                 (this[pu].symbol[i][1] === "battleship_B+" &&
                                     this[pu].symbol[i][0] >= 1 && this[pu].symbol[i][0] <= 4)) {
                                 temp_sol.push(i);
@@ -6244,7 +6244,7 @@ class Puzzle {
                             } else if (this.pu_q.symbol[i + j * (this.nx0)] && this.pu_q.symbol[i + j * (this.nx0)][0] === 2) {
                                 text += '.';
                             } else if (this.pu_a.number[i + j * (this.nx0)] && this.pu_a.number[i + j * (this.nx0)][2] !== "7" && (this.pu_q.surface[i + j * (this.nx0)] === 1 ||
-                                    this.pu_q.surface[i + j * (this.nx0)] === 8 || this.pu_q.surface[i + j * (this.nx0)] === 3)) { //Dark Grey, Grey and Light grey
+                                this.pu_q.surface[i + j * (this.nx0)] === 8 || this.pu_q.surface[i + j * (this.nx0)] === 3)) { //Dark Grey, Grey and Light grey
                                 switch (parseInt(this.pu_a.number[i + j * (this.nx0)][0])) {
                                     case 1:
                                         text += 'a';
@@ -6483,11 +6483,11 @@ class Puzzle {
                 }
                 if (a) {
                     if ((a[0] === "thermo" ||
-                            a[0] === "nobulbthermo" ||
-                            a[0] === "arrows" ||
-                            a[0] === "direction" ||
-                            a[0] === "squareframe" ||
-                            a[0] === "polygon") && a[1] === -1) {
+                        a[0] === "nobulbthermo" ||
+                        a[0] === "arrows" ||
+                        a[0] === "direction" ||
+                        a[0] === "squareframe" ||
+                        a[0] === "polygon") && a[1] === -1) {
                         if (this[pu_mode][a[0]].length > 0) {
                             this.pu_q.command_redo.push([a[0], a[1], this[pu_mode][a[0]].pop(), pu_mode]);
                             if (a_col) {
@@ -6603,12 +6603,12 @@ class Puzzle {
                         a_4 = [a[4]];
                     }
                     if ((a[0] === "thermo" ||
-                            a[0] === "nobulbthermo" ||
-                            a[0] === "arrows" ||
-                            a[0] === "direction" ||
-                            a[0] === "squareframe" ||
-                            a[0] === "polygon" ||
-                            a[0] === "killercages") && a[1] === -1) {
+                        a[0] === "nobulbthermo" ||
+                        a[0] === "arrows" ||
+                        a[0] === "direction" ||
+                        a[0] === "squareframe" ||
+                        a[0] === "polygon" ||
+                        a[0] === "killercages") && a[1] === -1) {
                         if (this[pu_mode][a[0]].length > 0) {
                             this.pu_a.command_redo.push([a[0], a[1], this[pu_mode][a[0]].pop(), pu_mode].concat(a_45));
                             if (a_col) {
@@ -6718,11 +6718,11 @@ class Puzzle {
                 }
                 if (a) {
                     if ((a[0] === "thermo" ||
-                            a[0] === "nobulbthermo" ||
-                            a[0] === "arrows" ||
-                            a[0] === "direction" ||
-                            a[0] === "squareframe" ||
-                            a[0] === "polygon") && a[1] === -1) {
+                        a[0] === "nobulbthermo" ||
+                        a[0] === "arrows" ||
+                        a[0] === "direction" ||
+                        a[0] === "squareframe" ||
+                        a[0] === "polygon") && a[1] === -1) {
                         this.pu_q.command_undo.push([a[0], a[1], null, pu_mode]);
                         this[pu_mode][a[0]].push(a[2]);
                         if (a_col) {
@@ -6830,12 +6830,12 @@ class Puzzle {
                         a_4 = [a[4]];
                     }
                     if ((a[0] === "thermo" ||
-                            a[0] === "nobulbthermo" ||
-                            a[0] === "arrows" ||
-                            a[0] === "direction" ||
-                            a[0] === "squareframe" ||
-                            a[0] === "polygon" ||
-                            a[0] === "killercages") && a[1] === -1) {
+                        a[0] === "nobulbthermo" ||
+                        a[0] === "arrows" ||
+                        a[0] === "direction" ||
+                        a[0] === "squareframe" ||
+                        a[0] === "polygon" ||
+                        a[0] === "killercages") && a[1] === -1) {
                         this.pu_a.command_undo.push([a[0], a[1], null, pu_mode].concat(a_45));
                         this[pu_mode][a[0]].push(a[2]);
                         if (a_col) {
@@ -7020,6 +7020,7 @@ class Puzzle {
     }
 
     set_value(prop, key, value, color_value = undefined) {
+        console.log("Setting value for " + prop + " at key " + key, value, color_value);
         this.record(prop, key, this.undoredo_counter);
         this[this.mode.qa][prop][key] = value;
         // Set or delete the color value if given
@@ -7360,8 +7361,8 @@ class Puzzle {
                     }
                 } else if (prop === "lineE") {
                     for (var [
-                            [i, j], edge_data, color
-                        ] of data[prop]) {
+                        [i, j], edge_data, color
+                    ] of data[prop]) {
                         let c1 = this.point[k].surround[i];
                         let c2 = this.point[k].surround[j];
                         let key = this.line_key(c1, c2);
@@ -7613,9 +7614,9 @@ class Puzzle {
                         }
                         for (var k of this.selection) {
                             if (((this.mode.qa === "pu_a") &&
-                                    this["pu_q"].number[k] &&
-                                    this["pu_q"].number[k][2] === "1" &&
-                                    pu.only_alphanumeric(parseInt(this["pu_q"].number[k][0])))) { // if single digit is present, dont modify that cell
+                                this["pu_q"].number[k] &&
+                                this["pu_q"].number[k][2] === "1" &&
+                                pu.only_alphanumeric(parseInt(this["pu_q"].number[k][0])))) { // if single digit is present, dont modify that cell
                                 var single_digit = true;
                             } else if ((this.mode.qa === "pu_a") && this["pu_q"].number[k] && this["pu_q"].number[k][2] === "7") {
                                 // This is for single digit obtained from candidate submode
@@ -7697,10 +7698,19 @@ class Puzzle {
                                 }
 
                                 this.record("number", k, this.undoredo_counter);
+                                console.log(this[this.mode.qa].number[k], [key, submode[1]])
                                 if (this[this.mode.qa].number[k] && this[this.mode.qa].number[k][2] === 1 && this[this.mode.qa].number[k][0] === key) {
-                                    delete this[this.mode.qa].number[k];
+                                    this.set_value("number", k, [key, submode[1], "5"]);
                                 } else {
-                                    this[this.mode.qa].number[k] = [key, submode[1], "1"]; // Normal submode is 1
+                                    if (this[this.mode.qa].number[k] && this[this.mode.qa].number[k][0] == key) {
+                                        if (this[this.mode.qa].number[k][2] == "6") {
+                                            this.remove_value("number", k);
+                                        } else {
+                                            this[this.mode.qa].number[k] = [key, submode[1], "6"];
+                                        }
+                                    } else {
+                                        this[this.mode.qa].number[k] = [key, submode[1], "1"]; // Normal submode is 1
+                                    }
                                 }
                                 this.record_replay("number", k, this.undoredo_counter);
                             }
@@ -7737,8 +7747,8 @@ class Puzzle {
                             let cells = [];
                             for (var k of this.selection) {
                                 if ((this["pu_q"].number[k] && this["pu_q"].number[k][2] === "1" &&
-                                        pu.only_alphanumeric(parseInt(this["pu_q"].number[k][0])) &&
-                                        this.selection.length > 1) ||
+                                    pu.only_alphanumeric(parseInt(this["pu_q"].number[k][0])) &&
+                                    this.selection.length > 1) ||
                                     this["pu_a"].number[k] && this["pu_a"].number[k][2] === "1") { // if single digit is present, dont modify that cell
                                     continue;
                                 } else if (this["pu_q"].number[k] && this["pu_q"].number[k][2] === "7" && this.selection.length > 1) {
@@ -9234,8 +9244,8 @@ class Puzzle {
         }
     }
 
-    direction_arrow8(x, y) {} //override
-    direction_arrow4(x, y) {} //override
+    direction_arrow8(x, y) { } //override
+    direction_arrow4(x, y) { } //override
 
     //////////////////////////
     // symbol
@@ -11646,11 +11656,11 @@ class Puzzle {
                     offset = 2;
                 }
                 neighbors2 = [row_num * this.nx0 + 3 * this.nx0 * this.ny0 + col_num - 1, // left middle
-                    row_num * this.nx0 + 3 * this.nx0 * this.ny0 + col_num, // right middle,
-                    4 * this.nx0 * this.ny0 + num * 2, // bottom left middle
-                    4 * this.nx0 * this.ny0 + num * 2 + 1, // bottom right middle
-                    4 * this.nx0 * this.ny0 + num * 2 - this.nx0 * 2 - 1 + offset, // top left middle
-                    4 * this.nx0 * this.ny0 + num * 2 + 1 - this.nx0 * 2 - 1 + offset // top right middle
+                row_num * this.nx0 + 3 * this.nx0 * this.ny0 + col_num, // right middle,
+                4 * this.nx0 * this.ny0 + num * 2, // bottom left middle
+                4 * this.nx0 * this.ny0 + num * 2 + 1, // bottom right middle
+                4 * this.nx0 * this.ny0 + num * 2 - this.nx0 * 2 - 1 + offset, // top left middle
+                4 * this.nx0 * this.ny0 + num * 2 + 1 - this.nx0 * 2 - 1 + offset // top right middle
                 ]
                 neighbors = neighbors2.concat(this.point[num].surround);
             } else if (this.gridtype === "tetrakis_square") {
@@ -12971,7 +12981,7 @@ class Puzzle {
         }
 
         // Helper method
-        const placeChar = function(thisRef, x, y, char, color) {
+        const placeChar = function (thisRef, x, y, char, color) {
             thisRef.record("number", x + y);
             thisRef[thisRef.mode.qa].number[x + y] = [char, color, "1"];
         };
