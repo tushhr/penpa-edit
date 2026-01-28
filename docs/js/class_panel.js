@@ -383,8 +383,8 @@ class Panel {
         } else if (pu.mode[pu.mode.qa].edit_mode === "sudoku") {
             switch (this.panelmode) {
                 case "number":
-                    this.nxf = 4;
-                    this.nyf = 4;
+                    this.nxf = 3;
+                    this.nyf = 5;
 
                     this.sizef = 45;
                     this.spacef = 15;
