@@ -46,58 +46,81 @@ class Panel {
         this.fkb.style.width = ((this.sizef + this.spacef) * this.nxf + this.spacef).toString() + "px";
         this.fkb.style.height = ((this.sizef + this.spacef) * this.nyf + this.spacef + height).toString() + "px";
     }
+
     draw_number() {
         this.ctxf.clearRect(0, 0, this.canvasf.width, this.canvasf.height);
 
         for (var i = 0; i < this.nxf * this.nyf; i++) {
             if (this.cont[i] === "") continue;
-            
 
             let col = i % this.nxf;
             let row = Math.floor(i / this.nxf);
-            let x = col * (this.sizef + this.spacef) + this.sizef / 2;
-            let y = row * (this.sizef + this.spacef) + this.sizef / 2;
-            let r = this.sizef / 2;
 
-            // --- Outer Soft Shadow (Aesthetic Touch) ---
-            this.ctxf.shadowColor = "rgba(0, 0, 0, 0.05)";
-            this.ctxf.shadowBlur = 4;
-            this.ctxf.shadowOffsetY = 2;
+            // --- Rect Dimensions ---
+            let padding = 4; // Buttons ke beech gap
+            let w = this.sizef;
+            let h = this.sizef;
+            let x = col * (w + this.spacef);
+            let y = row * (h + this.spacef);
+            let borderRadius = 12; // Refreshing rounded look
 
-            // --- Circular Button Body ---
+            // --- 1. Button Background (Refreshing Look) ---
+            this.ctxf.save();
             this.ctxf.beginPath();
-            this.ctxf.arc(x, y, r, 0, 2 * Math.PI);
+            this.ctxf.roundRect(x, y, w, h, borderRadius); // Modern rounded rectangle
+
+            // Soft Shadow
+            this.ctxf.shadowColor = "rgba(0, 0, 0, 0.08)";
+            this.ctxf.shadowBlur = 10;
+            this.ctxf.shadowOffsetY = 4;
+
             this.ctxf.fillStyle = "#ffffff";
             this.ctxf.fill();
+            this.ctxf.restore();
 
-            // --- Reset Shadow for Text ---
-            this.ctxf.shadowColor = "transparent";
-
-            // --- Border ---
-            this.ctxf.strokeStyle = "#efefef";
-            this.ctxf.lineWidth = 1.5;
+            // --- 2. Border ---
+            this.ctxf.strokeStyle = "#e0e0e0";
+            this.ctxf.lineWidth = 1;
             this.ctxf.stroke();
 
-            // --- Typography ---
-            let isSpecial = (this.cont[i] === "⌫");
-            this.ctxf.fillStyle = isSpecial ? "#ff5e5e" : "#333333";
+            // --- 3. Content Logic ---
+            let editMode = pu.mode[pu.mode.qa][pu.mode[pu.mode.qa].edit_mode][0];
+            let isSpecial = i >= 10;
 
-            if( i == 10 && pu.mode[pu.mode.qa][pu.mode[pu.mode.qa].edit_mode][0] == 2) {
-                this.ctxf.fillStyle = "#666666";
-                this.ctxf.strokeStyle = "#666666";
-                this.ctxf.lineWidth = 2;
-                this.ctxf.stroke();
+            let textX = x + w / 2;
+            let textY = y + h / 2;
+            let fontSize = 0.45 * w;
+            let textAlign = "center";
+
+            if (!isSpecial) {
+                if (editMode == 2) {
+                    // Top-Left Small
+                    fontSize = 0.28 * w;
+                    textX = x + (w * 0.25);
+                    textY = y + (h * 0.25);
+                } else if (editMode == 3) {
+                    // Centre Small
+                    fontSize = 0.30 * w;
+                    // textX/Y same (centre)
+                }
             }
 
-            // Custom Font Style
-            let fontSize = isSpecial ? 0.4 * this.sizef : 0.45 * this.sizef;
-            this.ctxf.font = `600 ${fontSize}px 'Inter', -apple-system, sans-serif`;
-            this.ctxf.textAlign = "center";
+            // --- 4. Draw Text ---
+            this.ctxf.fillStyle = isSpecial ? "#ff5e5e" : "#2c3e50"; // Darker navy for better contrast
+            this.ctxf.font = `600 ${fontSize}px 'Inter', sans-serif`;
+            this.ctxf.textAlign = textAlign;
             this.ctxf.textBaseline = "middle";
+            this.ctxf.fillText(this.cont[i].toString(), textX, textY);
 
-            this.ctxf.fillText(this.cont[i].toString(), x, y);
+            // --- 5. Highlight Mode 1 special condition (Aapka purana logic) ---
+            if (i == 10 && editMode == 2) { // Maan lo editMode 1 pe highlight chahiye
+                this.ctxf.strokeStyle = "#3498db"; // Clean Blue
+                this.ctxf.lineWidth = 2.5;
+                this.ctxf.stroke();
+            }
         }
     }
+
     draw_unicodesymbol() {
         set_surface_style(this.ctxf, 99);
         for (var i = 0; i < this.nxf * this.nyf; i++) {
