@@ -2108,14 +2108,14 @@ onload = function() {
             }
             panel_pu.draw_panel();
         } else if (panel_pu.panelmode === "number") {
-            if ( n < 9 || n == 12) {
-                pu.key_number(panel_pu.cont[n].toString());
-            } else if (n === 9) {
+            if (n === 3) {
                 pu.toggle_check("sub_sudoku3", "sub_sudoku1");
-            } else if (n === 10) {
+            } else if (n === 7) {
                 pu.toggle_check("sub_sudoku2", "sub_sudoku1");
             } else if (n === 11) {
                 pu.key_space();
+            } else {
+                pu.key_number(panel_pu.cont[n].toString())
             }
         } else if (panel_pu.panelmode === "alphabet" || panel_pu.panelmode === "alphabet_s") {
             if (0 <= n && n <= 27) {

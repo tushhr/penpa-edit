@@ -37,7 +37,7 @@ class Panel {
     }
 
     canvas_size_setting(height) {
-        this.canvasf.width = ((this.sizef + this.spacef) * this.nxf - this.spacef) * pu.resol;
+        this.canvasf.width = ((this.sizef + this.spacef) * this.nxf - this.spacef) * pu.resol + 15;
         this.canvasf.height = ((this.sizef + this.spacef) * this.nyf - this.spacef) * pu.resol;
         this.ctxf.scale(pu.resol, pu.resol);
         this.canvasf.style.width = ((this.sizef + this.spacef) * this.nxf - this.spacef).toString() + "px";
@@ -56,20 +56,17 @@ class Panel {
             let col = i % this.nxf;
             let row = Math.floor(i / this.nxf);
 
-            // --- Rect Dimensions ---
-            let padding = 0; // Buttons ke beech gap
+            let padding = 0; 
             let w = this.sizef;
             let h = this.sizef;
             let x = col * (w + this.spacef);
-            let y = row * (h + this.spacef);
-            let borderRadius = 12; // Refreshing rounded look
+            let y = row * (h + this.spacef) + 1.5;
+            let borderRadius = 12; 
 
-            // --- 1. Button Background (Refreshing Look) ---
             this.ctxf.save();
             this.ctxf.beginPath();
-            this.ctxf.roundRect(x, y, w, h, borderRadius); // Modern rounded rectangle
+            this.ctxf.roundRect(x, y, w, h, borderRadius); 
 
-            // Soft Shadow
             this.ctxf.shadowColor = "rgba(0, 0, 0, 0.08)";
             this.ctxf.shadowBlur = 10;
             this.ctxf.shadowOffsetY = 4;
@@ -78,14 +75,12 @@ class Panel {
             this.ctxf.fill();
             this.ctxf.restore();
 
-            // --- 2. Border ---
             this.ctxf.strokeStyle = "#e0e0e0";
             this.ctxf.lineWidth = 1;
             this.ctxf.stroke();
 
-            // --- 3. Content Logic ---
             let editMode = pu.mode[pu.mode.qa][pu.mode[pu.mode.qa].edit_mode][0];
-            let isSpecial = [9, 10, 11].includes(i);
+            let isSpecial = [3, 7, 11].includes(i);
 
             let textX = x + w / 2;
             let textY = y + h / 2;
@@ -94,27 +89,22 @@ class Panel {
 
             if (!isSpecial) {
                 if (editMode == 2) {
-                    // Top-Left Small
                     fontSize = 0.28 * w;
                     textX = x + (w * 0.25);
                     textY = y + (h * 0.25);
                 } else if (editMode == 3) {
-                    // Centre Small
                     fontSize = 0.30 * w;
-                    // textX/Y same (centre)
                 }
             }
 
-            // --- 4. Draw Text ---
-            this.ctxf.fillStyle = isSpecial ? "#ff5e5e" : "#2c3e50"; // Darker navy for better contrast
+            this.ctxf.fillStyle = isSpecial ? "#ff5e5e" : "#2c3e50"; 
             this.ctxf.font = `600 ${fontSize}px 'Inter', sans-serif`;
             this.ctxf.textAlign = textAlign;
             this.ctxf.textBaseline = "middle";
             this.ctxf.fillText(this.cont[i].toString(), textX, textY);
 
-            // --- 5. Highlight Mode 1 special condition (Aapka purana logic) ---
-            if (i == 10 && editMode == 2 || i == 9 && editMode == 3) { // Maan lo editMode 1 pe highlight chahiye
-                this.ctxf.strokeStyle = "#3498db"; // Clean Blue
+            if (i == 7 && editMode == 2 || i == 3 && editMode == 3) { 
+                this.ctxf.strokeStyle = "#3498db"; 
                 this.ctxf.lineWidth = 2.5;
                 this.ctxf.stroke();
             }
@@ -383,8 +373,8 @@ class Panel {
         } else if (pu.mode[pu.mode.qa].edit_mode === "sudoku") {
             switch (this.panelmode) {
                 case "number":
-                    this.nxf = 3;
-                    this.nyf = 5;
+                    this.nxf = 4;
+                    this.nyf = 4;
 
                     this.sizef = 45;
                     this.spacef = 15;
@@ -394,7 +384,7 @@ class Panel {
                     this.fkb.style.justifyContent = "center";
                     this.fkm.style.display = "none";
 
-                    this.cont = [1, 2, 3, 4, 5, 6, 7, 8, 9, "⊡", "✎", "⌫", "0", "", "", "", ""];
+                    this.cont = [1, 2, 3, "⊡", 4, 5, 6, "✎", 7, 8, 9, "⌫", 0, "", "", "", ""];
                     this.draw_number();
                     break;
                 case "alphabet":
