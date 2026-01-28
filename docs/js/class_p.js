@@ -7702,12 +7702,8 @@ class Puzzle {
                                 if (this[this.mode.qa].number[k] && this[this.mode.qa].number[k][2] === 1 && this[this.mode.qa].number[k][0] === key) {
                                     this.set_value("number", k, [key, submode[1], "5"]);
                                 } else {
-                                    if (this[this.mode.qa].number[k] && this[this.mode.qa].number[k][0] == key) {
-                                        if (this[this.mode.qa].number[k][2] == "6") {
-                                            this.remove_value("number", k);
-                                        } else {
+                                    if (this[this.mode.qa].number[k] && this[this.mode.qa].number[k][0] == key && this[this.mode.qa].number[k][2] == "1") {
                                             this[this.mode.qa].number[k] = [key, submode[1], "6"];
-                                        }
                                     } else {
                                         this[this.mode.qa].number[k] = [key, submode[1], "1"]; // Normal submode is 1
                                     }
