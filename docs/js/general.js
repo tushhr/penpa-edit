@@ -2366,7 +2366,7 @@ function load(urlParam, type = 'url', origurl = null) {
         }
     }
 
-    pu.mode_set(pu.mode[pu.mode.qa].edit_mode, 'url'); //includes redraw
+    // pu.mode_set(pu.mode[pu.mode.qa].edit_mode, 'url'); //includes redraw
 
     // Theme
     if (rtext[12]) {
