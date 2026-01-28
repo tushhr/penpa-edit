@@ -85,7 +85,7 @@ class Panel {
 
             // --- 3. Content Logic ---
             let editMode = pu.mode[pu.mode.qa][pu.mode[pu.mode.qa].edit_mode][0];
-            let isSpecial = i >= 10;
+            let isSpecial = [9, 10, 11].includes(i);
 
             let textX = x + w / 2;
             let textY = y + h / 2;
@@ -113,7 +113,7 @@ class Panel {
             this.ctxf.fillText(this.cont[i].toString(), textX, textY);
 
             // --- 5. Highlight Mode 1 special condition (Aapka purana logic) ---
-            if (i == 11 && editMode == 2 || i == 10 && editMode == 3) { // Maan lo editMode 1 pe highlight chahiye
+            if (i == 10 && editMode == 2 || i == 9 && editMode == 3) { // Maan lo editMode 1 pe highlight chahiye
                 this.ctxf.strokeStyle = "#3498db"; // Clean Blue
                 this.ctxf.lineWidth = 2.5;
                 this.ctxf.stroke();
@@ -382,34 +382,21 @@ class Panel {
             }
         } else if (pu.mode[pu.mode.qa].edit_mode === "sudoku") {
             switch (this.panelmode) {
-case "number":
-    this.nxf = 5;
-    this.nyf = 3;
+                case "number":
+                    this.nxf = 4;
+                    this.nyf = 4;
 
-    // Calculate responsive sizes based on available width
-    const availableWidth = window.innerWidth || document.documentElement.clientWidth;
-    const maxWidth = Math.min(availableWidth * 0.95, 380); // Cap at 380px
+                    this.sizef = 45;
+                    this.spacef = 15;
 
-    // Reduce spacing significantly
-    this.spacef = Math.max(20, Math.floor(availableWidth * 0.01)); // Reduced from 0.02 to 0.01
-    this.spacef = Math.min(this.spacef, 12); // Max 12px instead of 20px
+                    this.canvas_size_setting(0);
+                    this.fkb.style.display = "flex";
+                    this.fkb.style.justifyContent = "center";
+                    this.fkm.style.display = "none";
 
-    // Calculate button size
-    const totalSpaces = this.nxf + 1;
-    this.sizef = Math.floor((maxWidth - (totalSpaces * this.spacef)) / this.nxf);
-
-    // Adjust size limits
-    this.sizef = Math.min(this.sizef, 65); // Reduced from 80
-    this.sizef = Math.max(this.sizef, 35); // Reduced from 40
-
-    this.canvas_size_setting(0);
-    this.fkb.style.display = "flex";
-    this.fkb.style.justifyContent = "center";
-    this.fkm.style.display = "none";
-
-    this.cont = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "⊡", "✎", "⌫", "", "", "", "", "", ""];
-    this.draw_number();
-    break;
+                    this.cont = [1, 2, 3, 4, 5, 6, 7, 8, 9, "⊡", "✎", "⌫", "0", "", "", "", ""];
+                    this.draw_number();
+                    break;
                 case "alphabet":
                     this.nxf = 6;
                     this.nyf = 5;
