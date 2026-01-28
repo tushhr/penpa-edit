@@ -228,7 +228,7 @@ hr.newgridhrline {
 }
 
 #buttons {
-    background-color: var(--bgMedium);
+    /* background-color: var(--bgMedium); */
     /* box-shadow: var(--shadow_low); */
     border: 0;
     font-size: 0;

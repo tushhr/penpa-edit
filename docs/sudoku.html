@@ -144,21 +144,10 @@
     <div id="app-container">
 
         <div id="puzzle-container">
-
-            <div id="stop_watch">
-                <h1 id="timer" class="values">00:00:00:00:0</h1>
-                <div>
-                    <button id="sw_start" class="button sw">Start</button>
-                    <button id="sw_pause" class="button sw">Pause</button>
-                    <button id="sw_stop" class="button sw">Stop</button>
-                    <button id="sw_reset" class="button sw">Reset</button>
-                    <button id="sw_hide" class="button sw" data-mode="hide">Hide</button>
-                </div>
-            </div>
             <div id="puzzleinfo">
                 <label id="puzzletitle" class="info"></label>
                 <label id="puzzleauthor" class="info"></label>
-                <div><input type="button" id="puzzlerules" value="Show Rules" /></div>
+                <div style="top: 0; position: absolute; left: 0;"><input type="button" id="puzzlerules" value="Show Rules" /></div>
                 <div><a id="puzzlesourcelink" href="" target="_blank"><label id="puzzlesource" class="info"></label></a>
                 </div>
                 <div><label id="solution_check" class="info" /></label></div>
@@ -197,7 +186,7 @@
 
         </div>
 
-        <div style="display: flex; flex-direction: column; background-color: rgb(221, 221, 221);">
+        <div style="display: flex; flex-direction: column;">
 
             <div id="tool-container">
                 <div id="tool-holder">
@@ -854,6 +843,17 @@
                 </div>
             </div>
         </div>
+
+        <div id="stop_watch">
+                <h1 id="timer" class="values">00:00:00:00:0</h1>
+                <div>
+                    <button id="sw_start" class="button sw">Start</button>
+                    <button id="sw_pause" class="button sw">Pause</button>
+                    <button id="sw_stop" class="button sw">Stop</button>
+                    <button id="sw_reset" class="button sw">Reset</button>
+                    <button id="sw_hide" class="button sw" data-mode="hide">Hide</button>
+                </div>
+            </div>
     </div>
     <div id="modal" class="modal">
         <div id="modal-new-content" class="modal-content">
