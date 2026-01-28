@@ -183,7 +183,7 @@
     background-color: var(--white);
 }
 
-header,
+/* header, */
 .modal-header,
 .modal-subheader {
     background: var(--greyLight);

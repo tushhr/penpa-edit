@@ -383,18 +383,38 @@ class Panel {
         } else if (pu.mode[pu.mode.qa].edit_mode === "sudoku") {
             switch (this.panelmode) {
                 case "number":
-                    this.nxf = 4;
-                    this.nyf = 4;
-                    this.sizef = 40;
-                    this.spacef = 15;
+                    this.nxf = 5;
+                    this.nyf = 3;
+                    this.nxf = 5;
+                    this.nyf = 3;
 
+                    // Calculate responsive sizes based on available width
+                    const availableWidth = window.innerWidth || document.documentElement.clientWidth;
+                    const availableHeight = window.innerHeight || document.documentElement.clientHeight;
+
+                    // Calculate size based on grid layout (5 columns, 3 rows)
+                    // Use percentage of screen width, accounting for spacing
+                    const maxWidth = availableWidth * 0.95; // Use 90% of screen width
+                    const totalSpaces = this.nxf + 1; // Spaces between and around buttons
+
+                    // Calculate button size to fit screen
+                    this.spacef = Math.max(10, Math.floor(availableWidth * 0.02)); // 2% of width, min 10px
+                    this.sizef = Math.floor((maxWidth - (totalSpaces * this.spacef)) / this.nxf);
+
+                    // Optional: Cap maximum size for large screens
+                    this.sizef = Math.min(this.sizef, 80);
+                    this.spacef = Math.min(this.spacef, 20);
+
+                    // Optional: Ensure minimum size for small screens
+                    this.sizef = Math.max(this.sizef, 40);
+                    this.spacef = Math.max(this.spacef, 8);
                     this.canvas_size_setting(0);
                     this.fkb.style.display = "flex";
                     this.fkb.style.justifyContent = "center";
                     this.fkm.style.display = "none";
 
                     // Clean Content: 1-9, 0, aur Delete
-                    this.cont = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "⊡", "✎", "⌫", "", "", ""];
+                    this.cont = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "⊡", "✎", "⌫", "", "", "", "", "", ""];
                     this.draw_number();
                     break;
                 case "alphabet":
